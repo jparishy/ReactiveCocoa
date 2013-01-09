@@ -35,6 +35,26 @@ describe(@"foldLatestValues:initialValue:combine: RACSignal class method", ^{
         
         [second sendNext:@3];
     });
+    
+    it(@"should use the initial value when folding the values", ^{
+    
+        RACSubject *first = [RACSubject subject];
+        RACSubject *second = [RACSubject subject];
+        
+        RACSignal *folded = [RACSignal foldLatestValues:@[ first, second ] initialValue:@"This" combine:^id(id running, id next) {
+        
+            return [running stringByAppendingFormat:@" %@", next];
+        }];
+        
+        [first sendNext:@"is"];
+        
+        [folded subscribeNext:^(id x) {
+        
+            expect(x).to.equal(@"This is Sparta!");
+        }];
+        
+        [second sendNext:@"Sparta!"];
+    });
 });
 
 describe(@"not RACSignal class method", ^{
