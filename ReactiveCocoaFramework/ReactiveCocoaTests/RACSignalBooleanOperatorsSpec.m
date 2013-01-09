@@ -16,7 +16,7 @@ SpecBegin(RACSignalBooleanOperators)
 
 describe(@"fold RACSignal class method", ^{
 
-    it(@"should send 8", ^{
+    it(@"should send 8 when folding 5 and 3", ^{
     
         RACSubject *first = [RACSubject subject];
         RACSubject *second = [RACSubject subject];
@@ -41,7 +41,7 @@ describe(@"not RACSignal class method", ^{
     
     __block RACSubject *signal;
 
-    it(@"should receive NO", ^{
+    it(@"should send NO when given YES", ^{
     
         RACSignal *notYesSignal = [RACSignal not:signal];
         
@@ -53,7 +53,7 @@ describe(@"not RACSignal class method", ^{
         [signal sendNext:@YES];
     });
     
-    it(@"should receive YES", ^{
+    it(@"should send YES when given NO", ^{
     
         RACSignal *notNoSignal = [RACSignal not:signal];
         
@@ -74,7 +74,7 @@ describe(@"not RACSignal instance method", ^{
         signal = [RACSubject subject];
     });
     
-    it(@"should receive NO", ^{
+    it(@"should send NO when given YES", ^{
         
         RACSignal *notYesSignal = [signal not];
         
@@ -86,7 +86,7 @@ describe(@"not RACSignal instance method", ^{
         [signal sendNext:@YES];
     });
     
-    it(@"should receive YES", ^{
+    it(@"should send YES when given NO", ^{
         
         RACSignal *notNoSignal = [signal not];
         
@@ -101,7 +101,7 @@ describe(@"not RACSignal instance method", ^{
 
 describe(@"and RACSignal class method", ^{
     
-    it(@"should receive YES", ^{
+    it(@"should send YES when given YES and YES", ^{
         
         RACSubject *first = [RACSubject subject];
         RACSubject *second = [RACSubject subject];
@@ -117,7 +117,7 @@ describe(@"and RACSignal class method", ^{
         [second sendNext:@YES];
     });
     
-    it(@"should receive NO", ^{
+    it(@"should send NO when given YES and NO", ^{
         
         RACSubject *first = [RACSubject subject];
         RACSubject *second = [RACSubject subject];
@@ -137,7 +137,7 @@ describe(@"and RACSignal class method", ^{
 
 describe(@"and RACSignal instance method", ^{
     
-    it(@"should receive YES", ^{
+    it(@"should send YES when given YES and YES", ^{
         
         RACSubject *first = [RACSubject subject];
         RACSubject *second = [RACSubject subject];
@@ -154,7 +154,7 @@ describe(@"and RACSignal instance method", ^{
         [second sendNext:@YES];
     });
     
-    it(@"should receive NO", ^{
+    it(@"should send NO when given YES and NO", ^{
         
         RACSubject *first = [RACSubject subject];
         RACSubject *second = [RACSubject subject];
@@ -174,7 +174,7 @@ describe(@"and RACSignal instance method", ^{
 
 describe(@"or RACSignal class method", ^{
     
-    it(@"should receive YES", ^{
+    it(@"should send YES when given YES and NO", ^{
         
         RACSubject *first = [RACSubject subject];
         RACSubject *second = [RACSubject subject];
@@ -191,7 +191,7 @@ describe(@"or RACSignal class method", ^{
         [second sendNext:@NO];
     });
     
-    it(@"should receive NO", ^{
+    it(@"should send NO when given NO and NO", ^{
         
         RACSubject *first = [RACSubject subject];
         RACSubject *second = [RACSubject subject];
@@ -211,7 +211,7 @@ describe(@"or RACSignal class method", ^{
 
 describe(@"or RACSignal instance method", ^{
 
-    it(@"should receive YES", ^{
+    it(@"should send YES when given YES and NO", ^{
         
         RACSubject *first = [RACSubject subject];
         RACSubject *second = [RACSubject subject];
@@ -228,7 +228,7 @@ describe(@"or RACSignal instance method", ^{
         [second sendNext:@NO];
     });
     
-    it(@"should receive NO", ^{
+    it(@"should send NO when given NO and NO", ^{
         
         RACSubject *first = [RACSubject subject];
         RACSubject *second = [RACSubject subject];
@@ -250,7 +250,7 @@ describe(@"xor RACSignal class method", ^{
     
     __block RACSignal *xorSignal;
     
-    it(@"should receive NO", ^{
+    it(@"should send NO when given YES and YES", ^{
         
         RACSubject *first = [RACSubject subject];
         RACSubject *second = [RACSubject subject];
@@ -267,7 +267,7 @@ describe(@"xor RACSignal class method", ^{
         [second sendNext:@YES];
     });
     
-    it(@"should receive NO", ^{
+    it(@"should send NO when given NO and NO", ^{
         
         RACSubject *first = [RACSubject subject];
         RACSubject *second = [RACSubject subject];
@@ -284,7 +284,7 @@ describe(@"xor RACSignal class method", ^{
         [second sendNext:@NO];
     });
     
-    it(@"should receive YES", ^{
+    it(@"should send YES when given YES and NO", ^{
         
         RACSubject *first = [RACSubject subject];
         RACSubject *second = [RACSubject subject];
@@ -301,7 +301,7 @@ describe(@"xor RACSignal class method", ^{
         [second sendNext:@NO];
     });
     
-    it(@"should receive YES", ^{
+    it(@"should send YES when given NO and YES", ^{
         
         RACSubject *first = [RACSubject subject];
         RACSubject *second = [RACSubject subject];
@@ -318,7 +318,7 @@ describe(@"xor RACSignal class method", ^{
         [second sendNext:@YES];
     });
     
-    it(@"should receive YES", ^{
+    it(@"should send YES when given NO, YES, and NO", ^{
         
         RACSubject *first = [RACSubject subject];
         RACSubject *second = [RACSubject subject];
@@ -337,7 +337,7 @@ describe(@"xor RACSignal class method", ^{
         [third sendNext:@NO];
     });
     
-    it(@"should receive NO", ^{
+    it(@"should send NO when given NO, YES, and YES", ^{
         
         RACSubject *first = [RACSubject subject];
         RACSubject *second = [RACSubject subject];
