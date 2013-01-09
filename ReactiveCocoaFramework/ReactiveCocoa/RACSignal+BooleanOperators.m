@@ -17,13 +17,13 @@
  * This does not belong here.
  * Will remove or move it later.
  */
-+(instancetype)fold:(id<NSFastEnumeration>)signals withStart:(id)start combine:(id(^)(id running, id next))combine
++(instancetype)foldLatestValues:(id<NSFastEnumeration>)signals initialValue:(id)initialValue combine:(id(^)(id running, id next))combine
 {
     __block RACSubject *foldSignal = [RACSubject subject];
     
     [[RACSignal combineLatest:signals] subscribeNext:^(RACTuple *latestSignalValues) {
         
-        id runningValue = start;
+        id runningValue = initialValue;
         
         for(RACSignal *nextValue in latestSignalValues)
         {
@@ -66,7 +66,7 @@
 
 +(instancetype)and:(id<NSFastEnumeration>)signals
 {
-    return [RACSignal fold:signals withStart:@YES combine:^id(id running, id next) {
+    return [RACSignal foldLatestValues:signals initialValue:@YES combine:^id(id running, id next) {
     
         return @([running boolValue] && [next boolValue]);
     }];
@@ -83,7 +83,7 @@
 
 +(instancetype)or:(id<NSFastEnumeration>)signals
 {
-    return [RACSignal fold:signals withStart:@NO combine:^id(id running, id next) {
+    return [RACSignal foldLatestValues:signals initialValue:@NO combine:^id(id running, id next) {
         
         return @([running boolValue] || [next boolValue]);
     }];
@@ -100,7 +100,7 @@
 
 +(instancetype)xor:(id<NSFastEnumeration>)signals
 {
-    return [RACSignal fold:signals withStart:@NO combine:^id(id running, id next) {
+    return [RACSignal foldLatestValues:signals initialValue:@NO combine:^id(id running, id next) {
         
         return @([running boolValue] != [next boolValue]);
     }];
