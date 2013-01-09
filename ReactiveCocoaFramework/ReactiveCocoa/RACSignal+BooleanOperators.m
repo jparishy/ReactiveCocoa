@@ -57,6 +57,8 @@
 
 -(instancetype)and:(id)signalOrSignals
 {
+    NSParameterAssert(signalOrSignals);
+    
     if([signalOrSignals conformsToProtocol:@protocol(NSFastEnumeration)])
     {
         NSMutableArray *allSignals = [NSMutableArray arrayWithObject:self];
@@ -88,6 +90,8 @@
 
 -(instancetype)or:(id)signalOrSignals
 {
+    NSParameterAssert(signalOrSignals);
+    
     if([signalOrSignals conformsToProtocol:@protocol(NSFastEnumeration)])
     {
         NSMutableArray *allSignals = [NSMutableArray arrayWithObject:self];
@@ -119,6 +123,8 @@
 
 -(instancetype)xor:(id)signalOrSignals
 {
+    NSParameterAssert(signalOrSignals);
+    
     if([signalOrSignals conformsToProtocol:@protocol(NSFastEnumeration)])
     {
         NSMutableArray *allSignals = [NSMutableArray arrayWithObject:self];

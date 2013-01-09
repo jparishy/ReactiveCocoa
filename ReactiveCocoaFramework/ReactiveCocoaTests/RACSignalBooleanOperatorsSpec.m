@@ -133,6 +133,32 @@ describe(@"and RACSignal class method", ^{
         
         [second sendNext:@NO];
     });
+    
+    it(@"should send NO when given NO", ^{
+        
+        RACSubject *first = [RACSubject subject];
+        RACSignal *andSignal = [RACSignal and:first];
+        
+        [andSignal subscribeNext:^(id x) {
+            
+            expect(x).to.equal(@NO);
+        }];
+        
+        [first sendNext:@NO];
+    });
+    
+    it(@"should send YES when given YES", ^{
+        
+        RACSubject *first = [RACSubject subject];
+        RACSignal *andSignal = [RACSignal and:first];
+        
+        [andSignal subscribeNext:^(id x) {
+            
+            expect(x).to.equal(@YES);
+        }];
+        
+        [first sendNext:@YES];
+    });
 });
 
 describe(@"and RACSignal instance method", ^{
@@ -169,6 +195,40 @@ describe(@"and RACSignal instance method", ^{
         }];
         
         [second sendNext:@NO];
+    });
+    
+    it(@"should send NO when given NO and YES", ^{
+        
+        RACSubject *first = [RACSubject subject];
+        RACSubject *second = [RACSubject subject];
+        
+        RACSignal *andSignal = [first and:second];
+        
+        [first sendNext:@NO];
+        
+        [andSignal subscribeNext:^(id x) {
+            
+            expect(x).to.equal(@NO);
+        }];
+        
+        [first sendNext:@YES];
+    });
+    
+    it(@"should send YES when given YES and YES", ^{
+        
+        RACSubject *first = [RACSubject subject];
+        RACSubject *second = [RACSubject subject];
+        
+        RACSignal *andSignal = [first and:second];
+        
+        [first sendNext:@YES];
+        
+        [andSignal subscribeNext:^(id x) {
+            
+            expect(x).to.equal(@YES);
+        }];
+        
+        [first sendNext:@YES];
     });
 });
 
