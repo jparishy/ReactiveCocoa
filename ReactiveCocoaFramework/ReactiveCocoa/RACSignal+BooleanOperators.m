@@ -15,7 +15,7 @@
 
 +(instancetype)fold:(id<NSFastEnumeration>)signals withStart:(id)start combine:(id(^)(id running, id next))combine
 {
-    RACSubject *foldSignal = [RACSubject subject];
+    __block RACSubject *foldSignal = [RACSubject subject];
     
     [[RACSignal combineLatest:signals] subscribeNext:^(RACTuple *latestSignalValues) {
         
