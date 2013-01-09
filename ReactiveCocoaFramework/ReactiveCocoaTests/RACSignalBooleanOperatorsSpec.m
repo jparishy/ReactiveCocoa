@@ -14,14 +14,14 @@
 
 SpecBegin(RACSignalBooleanOperators)
 
-describe(@"fold RACSignal class method", ^{
+describe(@"foldLatestValues:initialValue:combine: RACSignal class method", ^{
 
     it(@"should send 8 when folding 5 and 3", ^{
     
         RACSubject *first = [RACSubject subject];
         RACSubject *second = [RACSubject subject];
         
-        RACSignal *folded = [RACSignal fold:@[ first, second ] withStart:@0 combine:^id(id running, id next) {
+        RACSignal *folded = [RACSignal foldLatestValues:@[ first, second ] initialValue:@0 combine:^id(id running, id next) {
         
             return @([running integerValue] + [next integerValue]);
         }];
