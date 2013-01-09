@@ -55,55 +55,97 @@
     return [signal not];
 }
 
--(instancetype)and:(id<NSFastEnumeration>)signals
+-(instancetype)and:(id)signalOrSignals
 {
-    NSMutableArray *allSignals = [NSMutableArray arrayWithObject:self];
-    for(RACSignal *signal in signals)
-        [allSignals addObject:signal];
-    
-    return [self.class and:allSignals];
-}
-
-+(instancetype)and:(id<NSFastEnumeration>)signals
-{
-    return [RACSignal foldLatestValues:signals initialValue:@YES combine:^id(id running, id next) {
-    
-        return @([running boolValue] && [next boolValue]);
-    }];
-}
-
--(instancetype)or:(id<NSFastEnumeration>)signals
-{
-    NSMutableArray *allSignals = [NSMutableArray arrayWithObject:self];
-    for(RACSignal *signal in signals)
-        [allSignals addObject:signal];
-    
-    return [self.class or:allSignals];
-}
-
-+(instancetype)or:(id<NSFastEnumeration>)signals
-{
-    return [RACSignal foldLatestValues:signals initialValue:@NO combine:^id(id running, id next) {
+    if([signalOrSignals conformsToProtocol:@protocol(NSFastEnumeration)])
+    {
+        NSMutableArray *allSignals = [NSMutableArray arrayWithObject:self];
+        for(RACSignal *signal in signalOrSignals)
+            [allSignals addObject:signal];
         
-        return @([running boolValue] || [next boolValue]);
-    }];
+        return [self.class and:allSignals];
+    }
+    else
+    {
+        return [self and:@[ signalOrSignals ]];
+    }
 }
 
--(instancetype)xor:(id<NSFastEnumeration>)signals
++(instancetype)and:(id)signalOrSignals
 {
-    NSMutableArray *allSignals = [NSMutableArray arrayWithObject:self];
-    for(RACSignal *signal in signals)
-        [allSignals addObject:signal];
-    
-    return [self.class xor:allSignals];
-}
-
-+(instancetype)xor:(id<NSFastEnumeration>)signals
-{
-    return [RACSignal foldLatestValues:signals initialValue:@NO combine:^id(id running, id next) {
+    if([signalOrSignals conformsToProtocol:@protocol(NSFastEnumeration)])
+    {
+        return [RACSignal foldLatestValues:signalOrSignals initialValue:@YES combine:^id(id running, id next) {
         
-        return @([running boolValue] != [next boolValue]);
-    }];
+            return @([running boolValue] && [next boolValue]);
+        }];
+    }
+    else
+    {
+        return [self and:@[ signalOrSignals ]];
+    }
+}
+
+-(instancetype)or:(id)signalOrSignals
+{
+    if([signalOrSignals conformsToProtocol:@protocol(NSFastEnumeration)])
+    {
+        NSMutableArray *allSignals = [NSMutableArray arrayWithObject:self];
+        for(RACSignal *signal in signalOrSignals)
+            [allSignals addObject:signal];
+        
+        return [self.class or:allSignals];
+    }
+    else
+    {
+        return [self or:@[ signalOrSignals]];
+    }
+}
+
++(instancetype)or:(id)signalOrSignals
+{
+    if([signalOrSignals conformsToProtocol:@protocol(NSFastEnumeration)])
+    {
+        return [RACSignal foldLatestValues:signalOrSignals initialValue:@NO combine:^id(id running, id next) {
+            
+            return @([running boolValue] || [next boolValue]);
+        }];
+    }
+    else
+    {
+        return [self or:@[ signalOrSignals ]];
+    }
+}
+
+-(instancetype)xor:(id)signalOrSignals
+{
+    if([signalOrSignals conformsToProtocol:@protocol(NSFastEnumeration)])
+    {
+        NSMutableArray *allSignals = [NSMutableArray arrayWithObject:self];
+        for(RACSignal *signal in signalOrSignals)
+            [allSignals addObject:signal];
+
+        return [self.class xor:allSignals];
+    }
+    else
+    {
+        return [self xor:@[ signalOrSignals ]];
+    }
+}
+
++(instancetype)xor:(id)signalOrSignals
+{
+    if([signalOrSignals conformsToProtocol:@protocol(NSFastEnumeration)])
+    {
+        return [RACSignal foldLatestValues:signalOrSignals initialValue:@NO combine:^id(id running, id next) {
+            
+            return @([running boolValue] != [next boolValue]);
+        }];
+    }
+    else
+    {
+        return [self xor:@[ signalOrSignals ]];
+    }
 }
 
 @end

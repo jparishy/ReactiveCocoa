@@ -15,13 +15,13 @@
 -(instancetype)not;
 +(instancetype)not:(RACSignal *)signal;
 
--(instancetype)and:(id<NSFastEnumeration>)signals;
-+(instancetype)and:(id<NSFastEnumeration>)signals;
+-(instancetype)and:(id)signalOrSignals;
++(instancetype)and:(id)signalOrSignals;
 
--(instancetype)or:(id<NSFastEnumeration>)signals;
-+(instancetype)or:(id<NSFastEnumeration>)signals;
+-(instancetype)or:(id)signalOrSignals;
++(instancetype)or:(id)signalOrSignals;
 
--(instancetype)xor:(id<NSFastEnumeration>)signals;
-+(instancetype)xor:(id<NSFastEnumeration>)signals;
+-(instancetype)xor:(id)signalOrSignals;
++(instancetype)xor:(id)signalOrSignals;
 
 @end
