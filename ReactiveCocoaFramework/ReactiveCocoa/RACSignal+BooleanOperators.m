@@ -13,6 +13,10 @@
 
 @implementation RACSignal (BooleanOperators)
 
+/*
+ * This does not belong here.
+ * Will remove or move it later.
+ */
 +(instancetype)fold:(id<NSFastEnumeration>)signals withStart:(id)start combine:(id(^)(id running, id next))combine
 {
     __block RACSubject *foldSignal = [RACSubject subject];
