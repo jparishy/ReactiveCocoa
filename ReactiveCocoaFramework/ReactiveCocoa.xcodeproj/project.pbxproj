@@ -239,6 +239,9 @@
 		D0EE284E164D906B006954A4 /* RACSignalSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = D0EE284A164D906B006954A4 /* RACSignalSequence.m */; };
 		D0FA57E3162CFED200AC6F42 /* EXTKeyPathCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = D0FA57E2162CFED200AC6F42 /* EXTKeyPathCoding.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D0FA57E4162CFED200AC6F42 /* EXTKeyPathCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = D0FA57E2162CFED200AC6F42 /* EXTKeyPathCoding.h */; };
+		E8EE17B5169DBFFE006C47C1 /* RACSignal+BooleanOperators.h in Headers */ = {isa = PBXBuildFile; fileRef = E8EE17B3169DBFFE006C47C1 /* RACSignal+BooleanOperators.h */; };
+		E8EE17B6169DBFFE006C47C1 /* RACSignal+BooleanOperators.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EE17B4169DBFFE006C47C1 /* RACSignal+BooleanOperators.m */; };
+		E8EE17B9169DC0F0006C47C1 /* RACSignalBooleanOperatorsSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EE17B8169DC0F0006C47C1 /* RACSignalBooleanOperatorsSpec.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -523,6 +526,9 @@
 		D0EE2849164D906B006954A4 /* RACSignalSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RACSignalSequence.h; sourceTree = "<group>"; };
 		D0EE284A164D906B006954A4 /* RACSignalSequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RACSignalSequence.m; sourceTree = "<group>"; };
 		D0FA57E2162CFED200AC6F42 /* EXTKeyPathCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EXTKeyPathCoding.h; path = extobjc/EXTKeyPathCoding.h; sourceTree = "<group>"; };
+		E8EE17B3169DBFFE006C47C1 /* RACSignal+BooleanOperators.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RACSignal+BooleanOperators.h"; sourceTree = "<group>"; };
+		E8EE17B4169DBFFE006C47C1 /* RACSignal+BooleanOperators.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RACSignal+BooleanOperators.m"; sourceTree = "<group>"; };
+		E8EE17B8169DC0F0006C47C1 /* RACSignalBooleanOperatorsSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RACSignalBooleanOperatorsSpec.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -753,6 +759,7 @@
 				881E86B91669350B00667F7B /* RACCompoundDisposableSpec.m */,
 				D02221611678910900DBD031 /* RACTupleSpec.m */,
 				D0870C6E16884A0600D0E11D /* RACBacktraceSpec.m */,
+				E8EE17B8169DC0F0006C47C1 /* RACSignalBooleanOperatorsSpec.m */,
 			);
 			path = ReactiveCocoaTests;
 			sourceTree = "<group>";
@@ -948,6 +955,8 @@
 				886F70281551CF920045D68B /* RACGroupedSignal.h */,
 				886F70291551CF920045D68B /* RACGroupedSignal.m */,
 				D0D486FC164253C400DD7605 /* Subjects */,
+				E8EE17B3169DBFFE006C47C1 /* RACSignal+BooleanOperators.h */,
+				E8EE17B4169DBFFE006C47C1 /* RACSignal+BooleanOperators.m */,
 			);
 			name = Signals;
 			sourceTree = "<group>";
@@ -1056,6 +1065,7 @@
 				881E87AC16695C5600667F7B /* RACQueueScheduler.h in Headers */,
 				881E87B216695EDF00667F7B /* RACImmediateScheduler.h in Headers */,
 				881E87C41669636000667F7B /* RACSubscriptionScheduler.h in Headers */,
+				E8EE17B5169DBFFE006C47C1 /* RACSignal+BooleanOperators.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1364,6 +1374,7 @@
 				881E87C61669636000667F7B /* RACSubscriptionScheduler.m in Sources */,
 				88C5A026169246140045EF05 /* RACMulticastConnection.m in Sources */,
 				5F9743F91694A2460024EB82 /* RACEagerSequence.m in Sources */,
+				E8EE17B6169DBFFE006C47C1 /* RACSignal+BooleanOperators.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1400,6 +1411,7 @@
 				D02221621678910900DBD031 /* RACTupleSpec.m in Sources */,
 				D0870C6F16884A0600D0E11D /* RACBacktraceSpec.m in Sources */,
 				88C5A02916924BFC0045EF05 /* RACMulticastConnectionSpec.m in Sources */,
+				E8EE17B9169DC0F0006C47C1 /* RACSignalBooleanOperatorsSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
