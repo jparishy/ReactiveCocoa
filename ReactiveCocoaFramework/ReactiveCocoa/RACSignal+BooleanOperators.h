@@ -10,6 +10,8 @@
 
 @interface RACSignal (BooleanOperators)
 
++(instancetype)fold:(id<NSFastEnumeration>)signals withStart:(id)start combine:(id(^)(id running, id next))combine;
+
 -(instancetype)not;
 +(instancetype)not:(RACSignal *)signal;
 

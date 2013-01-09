@@ -14,6 +14,29 @@
 
 SpecBegin(RACSignalBooleanOperators)
 
+describe(@"fold RACSignal class method", ^{
+
+    it(@"should send 8", ^{
+    
+        RACSubject *first = [RACSubject subject];
+        RACSubject *second = [RACSubject subject];
+        
+        RACSignal *folded = [RACSignal fold:@[ first, second ] withStart:@0 combine:^id(id running, id next) {
+        
+            return @([running integerValue] + [next integerValue]);
+        }];
+        
+        [first sendNext:@5];
+    
+        [folded subscribeNext:^(id x) {
+        
+            expect(x).to.equal(@8);
+        }];
+        
+        [second sendNext:@3];
+    });
+});
+
 describe(@"not RACSignal class method", ^{
     
     __block RACSubject *signal;
